@@ -20,6 +20,131 @@ loser = "p1"
 winner = "p2"
 game_status = 0
 
+gameBoard = {
+    "a10" : ["black", "p", "p2"],
+    "b10" : ["white", "", ""],
+    "c10" : ["black", "p", "p2"],
+    "d10" : ["white", "", ""],
+    "e10" : ["black", "p", "p2"],
+    "f10" : ["white", "", ""],
+    "g10" : ["black", "p", "p2"],
+    "h10" : ["white", "", ""],
+    "i10" : ["black", "p", "p2"],
+    "j10" : ["white", "", "p2"],
+    
+    "a9" : ["white", "", ""],
+    "b9" : ["black", "p", "p2"],
+    "c9" : ["white", "", ""],
+    "d9" : ["black", "p", "p2"],
+    "e9" : ["white", "", ""],
+    "f9" : ["black", "p", "p2"],
+    "g9" : ["white", "", ""],
+    "h9" : ["black", "p", "p2"],
+    "i9" : ["white", "", ""],
+    "j9" : ["black", "p", "p2"],
+    
+    "a8" : ["black", "p", "p2"],
+    "b8" : ["white", "", ""],
+    "c8" : ["black", "p", "p2"],
+    "d8" : ["white", "", ""],
+    "e8" : ["black", "p", "p2"],
+    "f8" : ["white", "", ""],
+    "g8" : ["black", "p", "p2"],
+    "h8" : ["white", "", ""],
+    "i8" : ["black", "p", "p2"],
+    "j8" : ["white", "", "p2"],
+    
+    "a7" : ["white", "", ""],
+    "b7" : ["black", "p", "p2"],
+    "c7" : ["white", "", ""],
+    "d7" : ["black", "p", "p2"],
+    "e7" : ["white", "", ""],
+    "f7" : ["black", "p", "p2"], 
+    "g7" : ["white", "", ""],
+    "h7" : ["black", "p", "p2"], 
+    "i7" : ["white", "", ""],
+    "j7" : ["black", "p", "p2"],
+
+    "a6" : ["black", "", ""],
+    "b6" : ["white", "", ""],
+    "c6" : ["black", "", ""],
+    "d6" : ["white", "", ""],
+    "e6" : ["black", "", ""],
+    "f6" : ["white", "", ""],
+    "g6" : ["black", "", ""],
+    "h6" : ["white", "", ""],
+    "i6" : ["black", "", ""],
+    "j6" : ["white", "", ""],
+
+    "a5" : ["white", "", ""],
+    "b5" : ["black", "", ""],
+    "c5" : ["white", "", ""],
+    "d5" : ["black", "", ""],
+    "e5" : ["white", "", ""],
+    "f5" : ["black", "", ""],
+    "g5" : ["white", "", ""],
+    "h5" : ["black", "", ""],
+    "i5" : ["white", "", ""],
+    "j5" : ["black", "", ""],
+
+    "a4" : ["black", "p", "p1"],
+    "b4" : ["white", "", ""],
+    "c4" : ["black", "p", "p1"],
+    "d4" : ["white", "", ""],
+    "e4" : ["black", "p", "p1"],
+    "f4" : ["white", "", ""],
+    "g4" : ["black", "p", "p1"],
+    "h4" : ["white", "", ""],
+    "i4" : ["black", "p", "p1"],
+    "j4" : ["white", "", ""],
+
+    "a3" : ["white", "", ""],
+    "b3" : ["black", "p", "p1"],
+    "c3" : ["white", "", ""],
+    "d3" : ["black", "p", "p1"],
+    "e3" : ["white", "", ""],
+    "f3" : ["black", "p", "p1"],
+    "g3" : ["white", "", ""],
+    "h3" : ["black", "p", "p1"],
+    "i3" : ["white", "", ""],
+    "j3" : ["black", "p", "p1"],
+
+    "a2" : ["black", "p", "p1"],
+    "b2" : ["white", "", ""],
+    "c2" : ["black", "p", "p"],
+    "d2" : ["white", "", ""],
+    "e2" : ["black", "p", "p1"],
+    "f2" : ["white", "", ""],
+    "g2" : ["black", "p", "p1"],
+    "h2" : ["white", "", ""],
+    "i2" : ["black", "p", "p1"],
+    "j2" : ["white", "", ""],
+
+    "a1" : ["white", "", ""],
+    "b1" : ["black", "p", "p1"],
+    "c1" : ["white", "", ""],
+    "d1" : ["black", "p", "p1"],
+    "e1" : ["white", "", ""],
+    "f1" : ["black", "p", "p1"],
+    "g1" : ["white", "", ""],
+    "h1" : ["black", "p", "p1"],
+    "i1" : ["white", "", ""],
+    "j1" : ["black", "p", "p1"],
+}
+
+"""
+gameBoard = (
+    ['0', 'B', '0', 'B', '0', 'B', '0', 'B', '0', 'B',],
+    ['B', '0', 'B', '0', 'B', '0', 'B', '0', 'B', '0',],
+    ['0', 'B', '0', 'B', '0', 'B', '0', 'B', '0', 'B',],
+    ['B', '0', 'B', '0', 'B', '0', 'B', '0', 'B', '0',],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0',],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0',],  
+    ['0', 'W', '0', 'W', '0', 'W', '0', 'W', '0', 'W',],
+    ['W', '0', 'W', '0', 'W', '0', 'W', '0', 'W', '0',],
+    ['0', 'W', '0', 'W', '0', 'W', '0', 'W', '0', 'W',],
+    ['W', '0', 'W', '0', 'W', '0', 'W', '0', 'W', '0',])
+"""
 ##########
 
 
@@ -29,20 +154,21 @@ async def on_ready():
 
 @client.command(name='tambouille')
 async def printHelp(ctx):
-    await ctx.send("dames : lancer une partie\nff : se rendre\nmove départ arrivée : bouger un pion\nturn : savoir à qui le tour")
+    await ctx.send("$dames : lancer une partie\n$ff : se rendre\n$move départ arrivée : bouger un pion\n$turn : savoir à qui le tour")
 
 @client.command(name='dames')
 async def launch_game(ctx):
     global game_status
+    global player1
+    global player2
+    global turn
+    
     game_status = 1
     player1 = ctx.author
     player2 = "Pascal"
     turn = player1
-    await ctx.send("Ok, on se fait une partie.\nDucoup " + str(player1) + ", A TOI D'JOUER !")
-
-    #await ctx.send(file=discord.File('board.png'))
-    #startGame()
-    #envoie le board de base
+    await ctx.send("Ok, on se fait une partie.\nDucoup " + str(player1) + ", A TOI D'JOUER ! (t'es les blancs)")
+    return
     
 @client.command(name='ff')
 async def forfeit(ctx):
@@ -57,33 +183,34 @@ async def forfeit(ctx):
         winner = player1 
     await ctx.send("Ah, le nul ! " + str(loser) + " s'est rendu, " + str(winner) + " est le vainqueur !")
     game_status = 0
+    return
 
 @client.command(name='move')
 async def nextMove(ctx, arg1, arg2):
+    global game_status
+    global turn
     if game_status == 0:
         await ctx.send("Ouais si tu veux mais la game a pas commencé")
-    billy = ctx.author
-    if turn == billy:
+    if turn == ctx.author:
         await ctx.send("Tu veux donc bouger le pion " + str(arg1) + " en " + str(arg2) + "...")
-        #faire des trucs
+
+        for key in gameBoard:
+            if key == str(arg1):
+                gameBoard[key][1] = "caca"
+                gameBoard[key][2] = "prout"
+
+        for item in gameBoard:
+            print(item + str(gameBoard[item]))
+
         turn = player2
     else:
-        await ctx.send(str(billy) + " c'est pas à toi de jouer, gros naze !")
+        await ctx.send(str(ctx.author) + " c'est pas à toi de jouer, gros naze !")
     return
 
-def startGame():
-    gameBoard = (
-        ['N', 'B', 'N', 'B', 'N', 'B', 'N', 'B', 'N', 'B',],
-        ['N', 'B', 'N', 'B', 'N', 'B', 'N', 'B', 'N', 'B',],
-        ['N', 'B', 'N', 'B', 'N', 'B', 'N', 'B', 'N', 'B',],
-        ['N', 'B', 'N', 'B', 'N', 'B', 'N', 'B', 'N', 'B',],
-        ['N', 'B', 'N', 'B', 'N', 'B', 'N', 'B', 'N', 'B',],
-        ['N', 'B', 'N', 'B', 'N', 'B', 'N', 'B', 'N', 'B',],
-        ['N', 'B', 'N', 'B', 'N', 'B', 'N', 'B', 'N', 'B',],
-        ['N', 'B', 'N', 'B', 'N', 'B', 'N', 'B', 'N', 'B',],
-        ['N', 'B', 'N', 'B', 'N', 'B', 'N', 'B', 'N', 'B',],
-        ['N', 'B', 'N', 'B', 'N', 'B', 'N', 'B', 'N', 'B',])
-
+@client.command(name='turn')
+async def whichTurn(ctx):
+    await ctx.send("C'est à " + str(turn) + " de jouer !")
+    return
 
 
 client.run(TOKEN)
