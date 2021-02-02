@@ -111,7 +111,7 @@ gameBoard = {
 
     "a2" : ["black", "p", "p1"],
     "b2" : ["white", "", ""],
-    "c2" : ["black", "p", "p"],
+    "c2" : ["black", "p", "p1"],
     "d2" : ["white", "", ""],
     "e2" : ["black", "p", "p1"],
     "f2" : ["white", "", ""],
@@ -132,7 +132,7 @@ gameBoard = {
     "j1" : ["black", "p", "p1"],
 }
 
-"""
+""" Maybe it'll be useful some time ?
 gameBoard = (
     ['0', 'B', '0', 'B', '0', 'B', '0', 'B', '0', 'B',],
     ['B', '0', 'B', '0', 'B', '0', 'B', '0', 'B', '0',],
@@ -146,6 +146,7 @@ gameBoard = (
     ['W', '0', 'W', '0', 'W', '0', 'W', '0', 'W', '0',])
 """
 ##########
+
 
 
 @client.event
@@ -163,13 +164,19 @@ async def launch_game(ctx):
     global player2
     global turn
     
-    game_status = 1
     player1 = ctx.author
-    player2 = "Pascal"
+    player2 = ctx.author
     turn = player1
+    game_status = 1
+    
     await ctx.send("Ok, on se fait une partie.\nDucoup " + str(player1) + ", A TOI D'JOUER ! (t'es les blancs)")
     return
-    
+
+@client.command(name='duel')
+async def duel_mod(ctx):
+    await ctx.send("Pour l'instant c'est pas implémenté mon coco")
+    return
+
 @client.command(name='ff')
 async def forfeit(ctx):
     global game_status
@@ -191,17 +198,16 @@ async def nextMove(ctx, arg1, arg2):
     global turn
     if game_status == 0:
         await ctx.send("Ouais si tu veux mais la game a pas commencé")
+        return
     if turn == ctx.author:
         await ctx.send("Tu veux donc bouger le pion " + str(arg1) + " en " + str(arg2) + "...")
 
-        for key in gameBoard:
-            if key == str(arg1):
-                gameBoard[key][1] = "caca"
-                gameBoard[key][2] = "prout"
+        #is_move_possible ?
 
-        for item in gameBoard:
-            print(item + str(gameBoard[item]))
-
+        #DEBUG_emptyBoard()
+        if (gameOver() != "no"):
+            game_status = 0
+            return
         turn = player2
     else:
         await ctx.send(str(ctx.author) + " c'est pas à toi de jouer, gros naze !")
@@ -211,6 +217,35 @@ async def nextMove(ctx, arg1, arg2):
 async def whichTurn(ctx):
     await ctx.send("C'est à " + str(turn) + " de jouer !")
     return
+
+#FUNCTIONS
+
+def gameOver():
+    p1_pawns = 0
+    p2_pawns = 0
+
+    for key in gameBoard:
+        if (gameBoard[key][1] == 'p' or gameBoard[key][1] == 'd') and gameBoard[key][2] == 'p1':
+            p1_pawns += 1
+        if (gameBoard[key][1] == 'p' or gameBoard[key][1] == 'd') and gameBoard[key][2] == 'p2':
+            p2_pawns += 1
+    print("p1 has " + str(p1_pawns))
+    print("p2 has " + str(p2_pawns))
+
+    if p1_pawns == 0:
+        print("p2 is the winner")
+        return ("p2")
+    elif p2_pawns == 0:
+        print("p1 is the winner") 
+        return ("p1")
+    else:
+        print("Game is not over yet")
+        return ("no")
+
+def DEBUG_emptyBoard():
+    for key in gameBoard:
+        gameBoard[key][1] = ""
+        gameBoard[key][2] = ""
 
 
 client.run(TOKEN)
