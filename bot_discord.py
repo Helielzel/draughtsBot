@@ -13,13 +13,6 @@ client = commands.Bot(command_prefix='$')
 
 ###game###
 
-player1 = "Edmond"
-player2 = "Pascal"
-turn = "p1"
-loser = "p1"
-winner = "p2"
-game_status = 0
-
 gameBoard = {
     "a10" : ["black", "p", "p2"],
     "b10" : ["white", "", ""],
@@ -145,6 +138,13 @@ gameBoard = (
     ['0', 'W', '0', 'W', '0', 'W', '0', 'W', '0', 'W',],
     ['W', '0', 'W', '0', 'W', '0', 'W', '0', 'W', '0',])
 """
+player1 = "Edmond"
+player2 = "Pascal"
+turn = "p1"
+loser = "p1"
+winner = "p2"
+game_status = 0
+
 ##########
 
 
@@ -155,7 +155,7 @@ async def on_ready():
 
 @client.command(name='tambouille')
 async def printHelp(ctx):
-    await ctx.send("$dames : lancer une partie\n$ff : se rendre\n$move départ arrivée : bouger un pion\n$turn : savoir à qui le tour")
+    await ctx.send("$dames : start a game\n$ff : surender\n$move departure arrival : move a pawn\n$turn : know which player have to play")
 
 @client.command(name='dames')
 async def launch_game(ctx):
@@ -169,26 +169,26 @@ async def launch_game(ctx):
     turn = player1
     game_status = 1
     
-    await ctx.send("Ok, on se fait une partie.\nDucoup " + str(player1) + ", A TOI D'JOUER ! (t'es les blancs)")
+    await ctx.send("Ok, let's play.\n" + str(player1) + ", YOUR MOVE ! (you play whites)")
     return
 
 @client.command(name='duel')
 async def duel_mod(ctx):
-    await ctx.send("Pour l'instant c'est pas implémenté mon coco")
+    await ctx.send("Not implemented yet mate")
     return
 
 @client.command(name='ff')
 async def forfeit(ctx):
     global game_status
     if game_status == 0:
-        await ctx.send("Ouais si tu veux mais la game a pas commencé")
+        await ctx.send("As you wish, but game hasn't started yet...")
         return
     loser = ctx.author
     if loser == player1:
         winner = player2
     else:
         winner = player1 
-    await ctx.send("Ah, le nul ! " + str(loser) + " s'est rendu, " + str(winner) + " est le vainqueur !")
+    await ctx.send("Ah, le nul ! " + str(loser) + " yields, " + str(winner) + " is the winner !")
     game_status = 0
     return
 
@@ -196,29 +196,41 @@ async def forfeit(ctx):
 async def nextMove(ctx, arg1, arg2):
     global game_status
     global turn
+
     if game_status == 0:
-        await ctx.send("Ouais si tu veux mais la game a pas commencé")
+        await ctx.send("Game hasn't started yet...")
         return
     if turn == ctx.author:
-        await ctx.send("Tu veux donc bouger le pion " + str(arg1) + " en " + str(arg2) + "...")
+        await ctx.send("So you want to move pawn in " + str(arg1) + " in " + str(arg2) + "...")
 
-        #is_move_possible ?
+        # is the key good ? is there a pawn and is the player pawn's owner ? 
+        if str(arg1) not in gameBoard or gameBoard[key][2] != turn:
+            await ctx.send("This move isn't possible")
+            return
+        is_move_possible(str(arg1), str(arg2))
+        
 
-        #DEBUG_emptyBoard()
         if (gameOver() != "no"):
             game_status = 0
             return
         turn = player2
     else:
-        await ctx.send(str(ctx.author) + " c'est pas à toi de jouer, gros naze !")
+        await ctx.send(str(ctx.author) + " , It's not your turn !")
     return
 
 @client.command(name='turn')
 async def whichTurn(ctx):
-    await ctx.send("C'est à " + str(turn) + " de jouer !")
+    await ctx.send(str(turn) + ", it's your turn")
     return
 
 #FUNCTIONS
+
+def is_move_possible(arg1, arg2):
+    return
+
+
+
+
 
 def gameOver():
     p1_pawns = 0
