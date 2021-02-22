@@ -1,4 +1,6 @@
-# bot.py
+# bot_discord.py
+# By Gaëtan "Helielzël" CHAUGNY
+
 import os
 
 import discord
@@ -122,7 +124,7 @@ gameBoard = {
     "g1" : ["white", "", ""],
     "h1" : ["black", "p", "p1"],
     "i1" : ["white", "", ""],
-    "j1" : ["black", "p", "p1"],
+    "j1" : ["black", "p", "p1"]
 }
 
 """ Maybe it'll be useful some time ?
@@ -144,6 +146,8 @@ turn = "p1"
 loser = "p1"
 winner = "p2"
 game_status = 0
+
+dico_alpha = { 1:"a", 2:"b", 3:"c", 4:"d", 5:"e", 6:"f", 7:"g", 8:"h", 9:"i", 10:"j"}
 
 ##########
 
@@ -172,9 +176,28 @@ async def launch_game(ctx):
     await ctx.send("Ok, let's play.\n" + str(player1) + ", YOUR MOVE ! (you play whites)")
     return
 
+@client.command(name='connard')
+async def mpf(ctx):
+    await ctx.send("Pas ma faute si je suis codé avec le cul.")
+    return
+
 @client.command(name='duel')
-async def duel_mod(ctx):
-    await ctx.send("Not implemented yet mate")
+async def duel_mod(ctx, user: discord.Member = None):
+    global player2
+    global game_status
+
+    if game_status == 0:
+        await ctx.send("As you wish, but game hasn't started yet...")
+        return
+    if ctx.author != player1:
+        await ctx.send("It's not up to you to decide to come and play.")
+        return
+    if user:
+        await ctx.send("So " + str(user.name) + " , you are player 2 ! (you play blacks)")
+        player2 = user.name
+    else:
+        await ctx.send("Yeah, but who do you want to play with ?")
+        return
     return
 
 @client.command(name='ff')
@@ -196,15 +219,19 @@ async def forfeit(ctx):
 async def nextMove(ctx, arg1, arg2):
     global game_status
     global turn
+    checker = 0
 
     if game_status == 0:
         await ctx.send("Game hasn't started yet...")
         return
     if turn == ctx.author:
-        await ctx.send("So you want to move pawn in " + str(arg1) + " in " + str(arg2) + "...")
-
-        # is the key good ? is there a pawn and is the player pawn's owner ? 
-        if str(arg1) not in gameBoard or gameBoard[key][2] != turn:
+        await ctx.send("So you want to move " + str(arg1) + " pawn in " + str(arg2) + "...")
+        if player1 == ctx.author:
+            checker = "p1"
+        else:
+            checker = "p2"
+        # is the key good ? does the pawn belong to the player ? 
+        if str(arg1) not in gameBoard or gameBoard[str(arg1)][2] != checker:
             await ctx.send("This move isn't possible")
             return
         is_move_possible(str(arg1), str(arg2))
@@ -226,6 +253,7 @@ async def whichTurn(ctx):
 #FUNCTIONS
 
 def is_move_possible(arg1, arg2):
+    
     return
 
 
