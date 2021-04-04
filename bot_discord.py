@@ -7,6 +7,8 @@ import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 
+import create_board as bd
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
@@ -147,8 +149,6 @@ loser = "p1"
 winner = "p2"
 game_status = 0
 
-dico_alpha = { 1:"a", 2:"b", 3:"c", 4:"d", 5:"e", 6:"f", 7:"g", 8:"h", 9:"i", 10:"j"}
-
 ##########
 
 
@@ -225,18 +225,26 @@ async def nextMove(ctx, arg1, arg2):
         await ctx.send("Game hasn't started yet...")
         return
     if turn == ctx.author:
-        await ctx.send("So you want to move " + str(arg1) + " pawn in " + str(arg2) + "...")
+        #await ctx.send("So you want to move " + str(arg1) + " pawn in " + str(arg2) + "...")
         if player1 == ctx.author:
             checker = "p1"
         else:
             checker = "p2"
         # is the key good ? does the pawn belong to the player ? 
         if str(arg1) not in gameBoard or gameBoard[str(arg1)][2] != checker:
-            await ctx.send("This move isn't possible")
+            await ctx.send("Wrong coord / Not your pawn")
             return
-        is_move_possible(str(arg1), str(arg2))
         
+        #checks everything (pawn, queen, color, move, eat)
+        if is_move_possible(str(arg1), str(arg2)) != "ok":
+            await ctx.send("This move isn't available (not sure yet)")
+            return
 
+        #WINDOW
+        bd.create_board(gameBoard)
+        await ctx.send(file=discord.File('img/coucou.png'))
+
+        ###
         if (gameOver() != "no"):
             game_status = 0
             return
@@ -253,12 +261,34 @@ async def whichTurn(ctx):
 #FUNCTIONS
 
 def is_move_possible(arg1, arg2):
-    
-    return
+    dico_alpha = { "a":1, "b":2, "c":3, "d":4, "e":5, "f":6, "g":7, "h":8, "i":9, "j":10}
+
+    splitted_arg1 = list()
+    splitted_arg1.append(arg1[0])
+    splitted_arg1.append(arg1[1])
+
+    splitted_arg2 = list()
+    splitted_arg2.append(arg2[0])
+    splitted_arg2.append(arg2[1])
+
+    if pawn_move(arg1, arg2, dico_alpha, splitted_arg1, splitted_arg2) != "ok":
+        return ("nope")
+    return ("ok")
 
 
+def pawn_move(arg1, arg2, dico_alpha, splitted_arg1, splitted_arg2):
+    color = 0
 
+    if gameBoard[arg2][0] == "white" or gameBoard[arg2][1] == "d" or gameBoard[arg2][1] == "p":
+        print("move is not possible, invalid destination")
+        return ("error")
 
+    color = -1 if gameBoard[arg1][0] == "black" else 1
+
+    if ((int(splitted_arg2[1]) + color == int(splitted_arg1[1])) and (dico_alpha[splitted_arg2[0]] - dico_alpha[splitted_arg1[0]] == 1 or dico_alpha[splitted_arg2[0]] - dico_alpha[splitted_arg1[0]] == -1)):
+        print("Pion qui bouge")
+        return ("ok")
+    return ("nope")
 
 def gameOver():
     p1_pawns = 0
@@ -269,8 +299,8 @@ def gameOver():
             p1_pawns += 1
         if (gameBoard[key][1] == 'p' or gameBoard[key][1] == 'd') and gameBoard[key][2] == 'p2':
             p2_pawns += 1
-    print("p1 has " + str(p1_pawns))
-    print("p2 has " + str(p2_pawns))
+    print("p1 has " + str(p1_pawns) + "pawns left")
+    print("p2 has " + str(p2_pawns) + "pawns left")
 
     if p1_pawns == 0:
         print("p2 is the winner")

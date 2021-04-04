@@ -1,6 +1,51 @@
 import itertools
 import pygame as pg
 
+
+def create_board(gameBoard):
+    circles = list()
+    # circles[0] = [color, type, x, y] --> draw_pawns(circles)
+
+    for key in gameBoard:
+        to_push = []
+        to_pushcoord = ""
+        splitted_key = []
+
+        if gameBoard[key][1] == "":
+            continue
+        if gameBoard[key][2] == "p1":
+            to_push.append("WHITE")
+        else:
+            to_push.append("GREY")
+        #done with color.
+        if gameBoard[key][1] == "p":
+            to_push.append("pawn")
+        else:
+            to_push.append("queen")
+        #done with type
+
+        splitted_key.append(key[0])
+        to_pushcoord += key[1]
+        try:
+            to_pushcoord += key[2]
+        except:
+            pass
+        splitted_key.append(to_pushcoord)
+        #now key is splitted like that : "a10" -> a, 10
+        #maintenant on établit les rapports entre les coord et les pixels de pygame
+
+        if splitted_key[0] == "a":
+            to_push.append(10)
+
+        if splitted_key[1] == "10":
+            to_push.append(10)
+
+        circles.append(to_push)
+
+    window(circles)
+
+
+
 def window(pawn_coord):
     pg.init()
 
@@ -37,8 +82,8 @@ def window(pawn_coord):
     #pg.draw.circle(background, GREY, (70, 10), 8)
     
 
-    #pg.image.save(screen, "coucou.png")
-
+    pg.image.save(screen, "img/coucou.png")
+    """
     game_exit = False
     while not game_exit:
         for event in pg.event.get():
@@ -50,6 +95,6 @@ def window(pawn_coord):
 
         pg.display.flip()
         clock.tick(30)
-
-    pg.quit()
+    """
+    
     return
