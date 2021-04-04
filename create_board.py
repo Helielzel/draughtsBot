@@ -81,8 +81,10 @@ def window(pawn_coord):
     #pg.draw.circle(background, GREY, (70, 10), 8)
     #pg.draw.circle(background, GREY, (70, 10), 8)
     
-
+    screen.fill((60, 70, 90))
+    screen.blit(background, (100, 100))
     pg.image.save(screen, "img/coucou.png")
+    
     """
     game_exit = False
     while not game_exit:
@@ -96,5 +98,5 @@ def window(pawn_coord):
         pg.display.flip()
         clock.tick(30)
     """
-    
+    pg.quit()
     return
