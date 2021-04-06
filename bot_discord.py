@@ -174,6 +174,7 @@ async def launch_game(ctx):
     game_status = 1
     
     await ctx.send("Ok, let's play.\n" + str(player1) + ", YOUR MOVE ! (you play whites)")
+    await ctx.send(file=discord.File('img/coucou.png'))
     return
 
 @client.command(name='connard')
@@ -262,7 +263,7 @@ async def whichTurn(ctx):
 
 def is_move_possible(arg1, arg2):
     dico_alpha = { "a":1, "b":2, "c":3, "d":4, "e":5, "f":6, "g":7, "h":8, "i":9, "j":10}
-
+    ######### DOESN'T WORK WITH 10 !!! ######### (fix that one day)
     splitted_arg1 = list()
     splitted_arg1.append(arg1[0])
     splitted_arg1.append(arg1[1])

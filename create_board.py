@@ -31,15 +31,52 @@ def create_board(gameBoard):
         except:
             pass
         splitted_key.append(to_pushcoord)
+
         #now key is splitted like that : "a10" -> a, 10
         #maintenant on établit les rapports entre les coord et les pixels de pygame
 
         if splitted_key[0] == "a":
             to_push.append(10)
+        if splitted_key[0] == "b":
+            to_push.append(30)
+        if splitted_key[0] == "c":
+            to_push.append(50)
+        if splitted_key[0] == "d":
+            to_push.append(70)
+        if splitted_key[0] == "e":
+            to_push.append(90)
+        if splitted_key[0] == "f":
+            to_push.append(110)
+        if splitted_key[0] == "g":
+            to_push.append(130)
+        if splitted_key[0] == "h":
+            to_push.append(150)
+        if splitted_key[0] == "i":
+            to_push.append(170)
+        if splitted_key[0] == "j":
+            to_push.append(190)
 
         if splitted_key[1] == "10":
             to_push.append(10)
-
+        if splitted_key[1] == "9":
+            to_push.append(30)
+        if splitted_key[1] == "8":
+            to_push.append(50)
+        if splitted_key[1] == "7":
+            to_push.append(70)
+        if splitted_key[1] == "6":
+            to_push.append(90)
+        if splitted_key[1] == "5":
+            to_push.append(110)
+        if splitted_key[1] == "4":
+            to_push.append(130)
+        if splitted_key[1] == "3":
+            to_push.append(150)
+        if splitted_key[1] == "2":
+            to_push.append(170)
+        if splitted_key[1] == "1":
+            to_push.append(190)
+        print(to_push)
         circles.append(to_push)
 
     window(circles)
@@ -54,7 +91,7 @@ def window(pawn_coord):
     GREY = pg.Color('grey')
 
     screen = pg.display.set_mode((400, 400))
-    clock = pg.time.Clock()
+    #clock = pg.time.Clock()
 
     colors = itertools.cycle((BLACK, WHITE))
     tile_size = 20
@@ -74,16 +111,10 @@ def window(pawn_coord):
         if len(line) != 4:
             continue
         pg.draw.circle(background, line[0], (line[2], line[3]), 8)
-    
-    #pg.draw.circle(background, GREY, (10, 50), 8) #a9 -> 10 50
-    #pg.draw.circle(background, GREY, (50, 10), 8) #c10 -> 50 10 
-    #pg.draw.circle(background, GREY, (30, 10), 8) #b10 -> 30 10
-    #pg.draw.circle(background, GREY, (70, 10), 8)
-    #pg.draw.circle(background, GREY, (70, 10), 8)
-    
+
     screen.fill((60, 70, 90))
     screen.blit(background, (100, 100))
-    pg.image.save(screen, "img/coucou.png")
+    #pg.image.save(screen, "img/coucou.png")
     
     """
     game_exit = False
