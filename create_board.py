@@ -16,7 +16,7 @@ def create_board(gameBoard):
         if gameBoard[key][2] == "p1":
             to_push.append("WHITE")
         else:
-            to_push.append("GREY")
+            to_push.append("BLACK")
         #done with color.
         if gameBoard[key][1] == "p":
             to_push.append("pawn")
@@ -89,11 +89,12 @@ def window(pawn_coord):
     BLACK = pg.Color('black')
     WHITE = pg.Color('white')
     GREY = pg.Color('grey')
+    BLUE = pg.Color(114, 164, 212)
 
     screen = pg.display.set_mode((400, 400))
     #clock = pg.time.Clock()
 
-    colors = itertools.cycle((BLACK, WHITE))
+    colors = itertools.cycle((BLUE, WHITE))
     tile_size = 20
     width, height = 10*tile_size, 10*tile_size
     background = pg.Surface((width, height))
@@ -110,11 +111,11 @@ def window(pawn_coord):
     for line in pawn_coord:
         if len(line) != 4:
             continue
-        pg.draw.circle(background, line[0], (line[2], line[3]), 8)
+        pg.draw.circle(background, line[0], (line[2], line[3]), 7)
 
     screen.fill((60, 70, 90))
     screen.blit(background, (100, 100))
-    #pg.image.save(screen, "img/coucou.png")
+    pg.image.save(screen, "img/coucou.png")
     
     """
     game_exit = False

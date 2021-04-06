@@ -174,6 +174,7 @@ async def launch_game(ctx):
     game_status = 1
     
     await ctx.send("Ok, let's play.\n" + str(player1) + ", YOUR MOVE ! (you play whites)")
+    bd.create_board(gameBoard)
     await ctx.send(file=discord.File('img/coucou.png'))
     return
 
