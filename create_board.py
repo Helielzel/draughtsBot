@@ -36,46 +36,46 @@ def create_board(gameBoard):
         #maintenant on établit les rapports entre les coord et les pixels de pygame
 
         if splitted_key[0] == "a":
-            to_push.append(10)
+            to_push.append(10 * 1.4)
         if splitted_key[0] == "b":
-            to_push.append(30)
+            to_push.append(30 * 1.4)
         if splitted_key[0] == "c":
-            to_push.append(50)
+            to_push.append(50 * 1.4)
         if splitted_key[0] == "d":
-            to_push.append(70)
+            to_push.append(70 * 1.4)
         if splitted_key[0] == "e":
-            to_push.append(90)
+            to_push.append(90 * 1.4)
         if splitted_key[0] == "f":
-            to_push.append(110)
+            to_push.append(110 * 1.4)
         if splitted_key[0] == "g":
-            to_push.append(130)
+            to_push.append(130 * 1.4)
         if splitted_key[0] == "h":
-            to_push.append(150)
+            to_push.append(150 * 1.4)
         if splitted_key[0] == "i":
-            to_push.append(170)
+            to_push.append(170 * 1.4)
         if splitted_key[0] == "j":
-            to_push.append(190)
+            to_push.append(190 * 1.4)
 
         if splitted_key[1] == "10":
-            to_push.append(10)
+            to_push.append(10 * 1.4)
         if splitted_key[1] == "9":
-            to_push.append(30)
+            to_push.append(30 * 1.4)
         if splitted_key[1] == "8":
-            to_push.append(50)
+            to_push.append(50 * 1.4)
         if splitted_key[1] == "7":
-            to_push.append(70)
+            to_push.append(70 * 1.4)
         if splitted_key[1] == "6":
-            to_push.append(90)
+            to_push.append(90 * 1.4)
         if splitted_key[1] == "5":
-            to_push.append(110)
+            to_push.append(110 * 1.4)
         if splitted_key[1] == "4":
-            to_push.append(130)
+            to_push.append(130 * 1.4)
         if splitted_key[1] == "3":
-            to_push.append(150)
+            to_push.append(150 * 1.4)
         if splitted_key[1] == "2":
-            to_push.append(170)
+            to_push.append(170 * 1.4)
         if splitted_key[1] == "1":
-            to_push.append(190)
+            to_push.append(190 * 1.4)
         print(to_push)
         circles.append(to_push)
 
@@ -91,11 +91,11 @@ def window(pawn_coord):
     GREY = pg.Color('grey')
     BLUE = pg.Color(114, 164, 212)
 
-    screen = pg.display.set_mode((400, 400))
+    screen = pg.display.set_mode((280, 280))
     #clock = pg.time.Clock()
 
     colors = itertools.cycle((BLUE, WHITE))
-    tile_size = 20
+    tile_size = 28
     width, height = 10*tile_size, 10*tile_size
     background = pg.Surface((width, height))
 
@@ -105,16 +105,16 @@ def window(pawn_coord):
             pg.draw.rect(background, next(colors), rect)
         next(colors)
 
-    screen.blit(background, (100, 100))
+    screen.blit(background, (0, 0))
 
     #pawn_coord = [color, type, x, y]
     for line in pawn_coord:
         if len(line) != 4:
             continue
-        pg.draw.circle(background, line[0], (line[2], line[3]), 7)
+        pg.draw.circle(background, line[0], (line[2], line[3]), 9)
 
     screen.fill((60, 70, 90))
-    screen.blit(background, (100, 100))
+    screen.blit(background, (0, 0))
     pg.image.save(screen, "img/coucou.png")
     
     """
