@@ -129,19 +129,6 @@ gameBoard = {
     "j1" : ["black", "p", "p1"]
 }
 
-""" Maybe it'll be useful some time ?
-gameBoard = (
-    ['0', 'B', '0', 'B', '0', 'B', '0', 'B', '0', 'B',],
-    ['B', '0', 'B', '0', 'B', '0', 'B', '0', 'B', '0',],
-    ['0', 'B', '0', 'B', '0', 'B', '0', 'B', '0', 'B',],
-    ['B', '0', 'B', '0', 'B', '0', 'B', '0', 'B', '0',],
-    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0',],
-    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0',],  
-    ['0', 'W', '0', 'W', '0', 'W', '0', 'W', '0', 'W',],
-    ['W', '0', 'W', '0', 'W', '0', 'W', '0', 'W', '0',],
-    ['0', 'W', '0', 'W', '0', 'W', '0', 'W', '0', 'W',],
-    ['W', '0', 'W', '0', 'W', '0', 'W', '0', 'W', '0',])
-"""
 player1 = "Edmond"
 player2 = "Pascal"
 turn = "p1"
@@ -150,8 +137,6 @@ winner = "p2"
 game_status = 0
 
 ##########
-
-
 
 @client.event
 async def on_ready():
@@ -242,6 +227,7 @@ async def nextMove(ctx, arg1, arg2):
             await ctx.send("This move isn't available (not sure yet)")
             return
 
+
         #WINDOW
         bd.create_board(gameBoard)
         await ctx.send(file=discord.File('img/coucou.png'))
@@ -301,8 +287,8 @@ def gameOver():
             p1_pawns += 1
         if (gameBoard[key][1] == 'p' or gameBoard[key][1] == 'd') and gameBoard[key][2] == 'p2':
             p2_pawns += 1
-    print("p1 has " + str(p1_pawns) + "pawns left")
-    print("p2 has " + str(p2_pawns) + "pawns left")
+    print("p1 has " + str(p1_pawns) + " pawns left")
+    print("p2 has " + str(p2_pawns) + " pawns left")
 
     if p1_pawns == 0:
         print("p2 is the winner")

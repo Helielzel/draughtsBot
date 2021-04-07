@@ -33,62 +33,22 @@ def create_board(gameBoard):
         splitted_key.append(to_pushcoord)
 
         #now key is splitted like that : "a10" -> a, 10
-        #maintenant on établit les rapports entre les coord et les pixels de pygame
 
-        if splitted_key[0] == "a":
-            to_push.append(10 * 1.4)
-        if splitted_key[0] == "b":
-            to_push.append(30 * 1.4)
-        if splitted_key[0] == "c":
-            to_push.append(50 * 1.4)
-        if splitted_key[0] == "d":
-            to_push.append(70 * 1.4)
-        if splitted_key[0] == "e":
-            to_push.append(90 * 1.4)
-        if splitted_key[0] == "f":
-            to_push.append(110 * 1.4)
-        if splitted_key[0] == "g":
-            to_push.append(130 * 1.4)
-        if splitted_key[0] == "h":
-            to_push.append(150 * 1.4)
-        if splitted_key[0] == "i":
-            to_push.append(170 * 1.4)
-        if splitted_key[0] == "j":
-            to_push.append(190 * 1.4)
+        alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+        num = ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1"]
 
-        if splitted_key[1] == "10":
-            to_push.append(10 * 1.4)
-        if splitted_key[1] == "9":
-            to_push.append(30 * 1.4)
-        if splitted_key[1] == "8":
-            to_push.append(50 * 1.4)
-        if splitted_key[1] == "7":
-            to_push.append(70 * 1.4)
-        if splitted_key[1] == "6":
-            to_push.append(90 * 1.4)
-        if splitted_key[1] == "5":
-            to_push.append(110 * 1.4)
-        if splitted_key[1] == "4":
-            to_push.append(130 * 1.4)
-        if splitted_key[1] == "3":
-            to_push.append(150 * 1.4)
-        if splitted_key[1] == "2":
-            to_push.append(170 * 1.4)
-        if splitted_key[1] == "1":
-            to_push.append(190 * 1.4)
-        print(to_push)
+        to_push.append((10 + alpha.index(splitted_key[0]) * 20) * 1.4)
+        to_push.append((10 + num.index(splitted_key[1]) * 20) * 1.4)
+        
         circles.append(to_push)
 
     window(circles)
-
-
 
 def window(pawn_coord):
     pg.init()
 
     BLACK = pg.Color('black')
     WHITE = pg.Color('white')
-    GREY = pg.Color('grey')
     BLUE = pg.Color(114, 164, 212)
 
     screen = pg.display.set_mode((280, 280))
